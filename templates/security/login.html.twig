@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<class="img js-fullheight" style="background-image: url("/img/bg.jpg")">
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Login Admin</h2>
+				</div>
+			</div>
+            <div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Veuillez entrer vos données!</h3>
+		      	<form action="#" class="signin-form">
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Username" required autofocus>
+    </div>
+    <div class="form-group">
+        <input id="password-field" type="password" class="form-control" placeholder="Password" required autocomplete="current-password" required>
+        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	</div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</form>
+{% endblock %}
